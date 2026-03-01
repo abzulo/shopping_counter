@@ -1,5 +1,5 @@
-from shop_counter.inventory import update_stock
-from shop_counter.data import products
+from shopping_counter.inventory import update_stock
+from shopping_counter.data import products
 import json
 
 
