@@ -1,10 +1,10 @@
-# inventory.py
-from shop_counter.data import products
+#inventory.py
+from shopping_counter.data import products
 
-# Fixed Product class
+
 class Product:
-    def __init__(self, pid, name, brand, category, price, stock, warranty):
-        self.id = pid
+    def __init__(self, id, name, brand, category, price, stock, warranty):
+        self.id = id
         self.name = name
         self.brand = brand
         self.category = category
@@ -19,11 +19,10 @@ class Product:
         return False
 
 
-# Fixed Inventory class
 class Inventory:
     def __init__(self):
         self.items = {
-            name: Product(name=name, **details)
+            name: Product(**details, name=name)
             for name, details in products.items()
         }
 
