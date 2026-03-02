@@ -1,0 +1,11 @@
+'test_shopping_counter.py' file content
+
+from shopping_counter.inventory import Inventory
+
+inv = Inventory()
+
+print("Reduce stock of apple by 2:")
+print(inv.update_stock("apple", 2))   # Expected: True
+
+print("Reduce stock of apple by 1000:")
+print(inv.update_stock("apple", 1000))   # Expected: false
