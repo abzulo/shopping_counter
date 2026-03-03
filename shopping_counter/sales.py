@@ -31,4 +31,4 @@ class Sale:
         }
 
         with open("sales_history.json", "a") as f:
-            f.write(json.dumps(sale) + "\n")
+            f.write(json.dumps(sale) + "\n") 
