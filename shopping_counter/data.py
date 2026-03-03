@@ -174,5 +174,7 @@ products = {
         "brand": "Anker",
         "category": "Accessories",
         "price": 1500,
-        }
+        "stock": 40,
+        "warranty": "12 months"
     }
+}
