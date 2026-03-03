@@ -1,5 +1,6 @@
-from shop_counter.inventory import update_stock
-from shop_counter.data import products
+# sales.py
+
+from shopping_counter.inventory import Inventory
 import json
 
 
@@ -8,18 +9,26 @@ class Sale:
         self.item = item
         self.qty = qty
         self.total = total
+        self.inventory = Inventory()
+
+    def process(self):
+        """
+        Attempt to reduce stock before saving sale
+        """
+        success = self.inventory.update_stock(self.item, self.qty)
+
+        if success:
+            self.save()
+            print("Sale recorded successfully.")
+        else:
+            print("Sale failed: Not enough stock available.")
 
     def save(self):
-        sale = {"item": self.item, "quantity": self.qty, "total": self.total}
+        sale = {
+            "item": self.item,
+            "quantity": self.qty,
+            "total": self.total
+        }
+
         with open("sales_history.json", "a") as f:
             f.write(json.dumps(sale) + "\n")
-
-def buy_item(item, quantity):
-    if update_stock(item, quantity):
-        total = products[item]["price"] * quantity
-        print(f"✅ You bought {quantity} {item}(s) for {total} KES.")
-       
-        sale = Sale(item, quantity, total)
-        sale.save()
-    else:
-        print("❌ Not enough stock or item not found.")
